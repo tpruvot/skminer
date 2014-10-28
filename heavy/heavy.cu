@@ -17,7 +17,7 @@
 
 #include "miner.h"
 
-
+extern "C" char *device_name[8];
 
 // nonce-array für die threads
 uint32_t *d_nonceVector[8];

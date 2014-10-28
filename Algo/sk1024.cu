@@ -22,8 +22,8 @@ static uint64_t *d_hash[8];
 
 extern void skein1024_cpu_init(int thr_id, int threads);
 extern void skein1024_setBlock(void *pdata);
-extern void skein1024_cpu_hash(int thr_id, int threads, uint64_t startNounce, uint64_t *d_hash, int order);
-//    extern void sk1024_keccak_cpu_hash(int thr_id, int threads, uint32_t startNounce, uint64_t *d_hash, int order)
+extern void skein1024_cpu_hash(int thr_id, int threads, uint64_t startNounce, uint64_t *d_outputHash, int order);
+// extern void sk1024_keccak_cpu_hash(int thr_id, int threads, uint32_t startNounce, uint64_t *d_hash, int order)
 extern uint64_t sk1024_keccak_cpu_hash(int thr_id, int threads, uint64_t startNounce, uint64_t *d_nonceVector, uint64_t *d_hash, int order);
 extern void sk1024_keccak_cpu_init(int thr_id, int threads);
 extern void sk1024_set_Target(const void *ptarget);

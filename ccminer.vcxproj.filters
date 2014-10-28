@@ -75,7 +75,7 @@
     <ClCompile Include="util.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cpu-miner.c">
+    <ClCompile Include="sk-miner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="hash\Keccak-compact64.c">

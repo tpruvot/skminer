@@ -31,11 +31,12 @@ namespace Core
 		LLP::Thread_t THREAD;
 		LLP::Timer    TIMER;
 		std::string   IP, PORT;
+
 		ServerConnection(std::string ip, std::string port, int nMaxThreads, int nMaxTimeout);
+
 		void ResetThreads();
 		unsigned long long Hashes();
 		void ServerThread();
-
 
 	};
 }

@@ -12,6 +12,9 @@
 #define _GNU_SOURCE
 
 #include "core.h"
+
+// in core.cpp
+
 //#include "hash/templates.h"
 //#include "hash/CBlock.h"
 //#include "hash/Miner.h"
@@ -275,6 +278,8 @@
 
 #define PROGRAM_NAME		"skminer"
 
+#include "util_llh.h"
+
 // from heavy.cu
 #ifdef __cplusplus
 extern "C"
@@ -320,14 +325,14 @@ static void signal_handler(int sig)
 {
 	switch (sig) {
 	case SIGHUP:
-		applog(LOG_INFO, "SIGHUP received");
+		//applog(LOG_INFO, "SIGHUP received");
 		break;
 	case SIGINT:
-		applog(LOG_INFO, "SIGINT received, exiting");
+		//applog(LOG_INFO, "SIGINT received, exiting");
 		exit(0);
 		break;
 	case SIGTERM:
-		applog(LOG_INFO, "SIGTERM received, exiting");
+		//applog(LOG_INFO, "SIGTERM received, exiting");
 		exit(0);
 		break;
 	}

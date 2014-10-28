@@ -286,7 +286,9 @@ extern bool have_gbt;
 extern bool allow_getwork;
 
 
-extern void applog(int prio, const char *fmt, ...);
+//extern void applog(int prio, const char *fmt, ...);
+#define applog(p, fmt, ...) printf(fmt "", __VA_ARGS__)
+
 extern json_t *json_rpc_call(CURL *curl, const char *url, const char *userpass,
 	const char *rpc_req, bool, bool, int *);
 extern char *bin2hex(const unsigned char *p, size_t len);

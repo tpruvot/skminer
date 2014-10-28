@@ -4,6 +4,9 @@
 #include "bignum.h"
 #include "../util_llh.h"
 #include "../miner2.h"
+
+extern "C" bool scanhash_sk1024(unsigned int thr_id, uint32_t* TheData, uint1024 TheTarget, uint64_t &TheNonce, uint64_t max_nonce, unsigned long long *hashes_done, int throughput);
+
 namespace Core
 {
 	MinerThread::MinerThread(unsigned int pData)

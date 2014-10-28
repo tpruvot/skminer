@@ -124,7 +124,7 @@ void diff_to_target(uint32_t *target, double diff)
 {
 	uint64_t m;
 	int k;
-	
+
 	for (k = 6; k > 0 && diff > 1.0; k--)
 		diff /= 4294967296.0;
 	m = (uint64_t)(4294901760.0 / diff);
@@ -146,7 +146,7 @@ void diff_to_target(uint32_t *target, double diff)
 static bool send_line(curl_socket_t sock, char *s)
 {
 	ssize_t len, sent = 0;
-	
+
 	len = (ssize_t)strlen(s);
 	s[len++] = '\n';
 
@@ -189,17 +189,4 @@ static curl_socket_t opensocket_grab_cb(void *clientp, curlsocktype purpose,
 	return *sock;
 }
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -302,15 +302,14 @@ static __device__ __forceinline__ void keccak_1600(uint64_t *state, const uint64
 }
 
 
-__global__ __launch_bounds__(128,4) void  sk1024_keccak_gpu_hash(int threads, uint64_t startNonce, uint64_t *g_hash, uint64_t *g_nonceVector, uint64_t *resNounce)
+__global__ __launch_bounds__(128,4)
+void  sk1024_keccak_gpu_hash(int threads, uint64_t startNonce, uint64_t *g_hash, uint64_t *g_nonceVector, uint64_t *resNounce)
 {
 
     int thread = (blockDim.x * blockIdx.x + threadIdx.x);
     if (thread < threads)
     {
-        
-		uint64_t nonce = startNonce + thread;
-
+         uint64_t nonce = startNonce + thread;
          uint64_t state[25];
         
        #pragma unroll 9
@@ -334,14 +333,14 @@ __global__ __launch_bounds__(128,4) void  sk1024_keccak_gpu_hash(int threads, ui
    
 void sk1024_keccak_cpu_init(int thr_id, int threads)
 {
-    	
 	cudaMemcpyToSymbol(RC,cpu_RC,sizeof(cpu_RC),0,cudaMemcpyHostToDevice);	
 	cudaMalloc(&d_SKNonce[thr_id], sizeof(uint64_t));
 	cudaMallocHost(&d_sknounce[thr_id], 1 * sizeof(uint64_t));
 } 
 
 
-__host__ uint64_t sk1024_keccak_cpu_hash(int thr_id, int threads, uint64_t startNounce, uint64_t *d_nonceVector, uint64_t *d_hash, int order)
+__host__
+uint64_t sk1024_keccak_cpu_hash(int thr_id, int threads, uint64_t startNounce, uint64_t *d_nonceVector, uint64_t *d_hash, int order)
 {
 	uint64_t result = 0xffffffffffffffff;
 	cudaMemset(d_SKNonce[thr_id], 0xff, sizeof(uint64_t));
@@ -352,14 +351,16 @@ __host__ uint64_t sk1024_keccak_cpu_hash(int thr_id, int threads, uint64_t start
 
 	size_t shared_size = 0;
 
-		sk1024_keccak_gpu_hash << <grid, block, shared_size >> >(threads, startNounce, d_hash, d_nonceVector, d_SKNonce[thr_id]);
+		sk1024_keccak_gpu_hash <<< grid, block, shared_size >>> (threads, startNounce, d_hash, d_nonceVector, d_SKNonce[thr_id]);
 	cudaMemcpy(d_sknounce[thr_id], d_SKNonce[thr_id], sizeof(uint64_t), cudaMemcpyDeviceToHost);
 	//	cudaThreadSynchronize();
 	MyStreamSynchronize(NULL, order, thr_id);
 	result = *d_sknounce[thr_id];
 	return result;
 }
-__host__ void sk1024_set_Target(const void *ptarget)
+
+__host__
+void sk1024_set_Target(const void *ptarget)
 {
 	// Kopiere die Hash-Tabellen in den GPU-Speicher
 	cudaMemcpyToSymbol(pTarget, ptarget, 16 * sizeof(uint64_t), 0, cudaMemcpyHostToDevice);

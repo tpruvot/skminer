@@ -4,13 +4,7 @@
 
 #include <stdio.h>
 #include <memory.h>
-//#include <stdint.h>
-
-
-typedef unsigned char uint8_t;
-typedef unsigned short uint16_t;
-typedef unsigned int uint32_t;
-typedef unsigned long long uint64_t;
+#include <stdint.h>
 
 #define SPH_C64(x)    ((uint64_t)(x ## ULL))
 #include "cuda_helper.h"
@@ -376,7 +370,8 @@ __host__ void skein1024_cpu_init(int thr_id, int threads)
 	cudaMemcpyToSymbol(ROT1024, cpu_ROT1024, sizeof(cpu_ROT1024), 0, cudaMemcpyHostToDevice);
 }
 
-__host__ void skein1024_cpu_hash(int thr_id, int threads, uint64_t startNounce, uint64_t *d_outputHash, int order)
+__host__
+void skein1024_cpu_hash(int thr_id, int threads, uint64_t startNounce, uint64_t *d_outputHash, int order)
 {
 
 	const int threadsperblock = 256; 

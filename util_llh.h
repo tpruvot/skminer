@@ -31,7 +31,7 @@
 #define Sleep(a)            boost::this_thread::sleep(boost::posix_time::milliseconds(a))
 #define LOCK(a)             boost::lock_guard<boost::mutex> lock(a)
 
-#define MAX_THREADS 18446744073709551615  //temporary
+#define MAX_THREADS 18446744073709551615ULL  //temporary
 int GetTotalCores();
 
 

@@ -2,7 +2,7 @@ AC_INIT([skminer], [2014.10.21])
 
 AC_PREREQ([2.59c])
 AC_CANONICAL_SYSTEM
-AC_CONFIG_SRCDIR([cpu-miner.c])
+AC_CONFIG_SRCDIR([sk-miner.cpp])
 AM_INIT_AUTOMAKE([gnu])
 AC_CONFIG_HEADERS([cpuminer-config.h])
 
@@ -95,7 +95,7 @@ then
 fi
 
 AC_CHECK_LIB(jansson, json_loads, request_jansson=false, request_jansson=true)
-))))
+#))))
 
 AC_CHECK_LIB([ssl],[SSL_library_init], [], [AC_MSG_ERROR([OpenSSL library required])])
 AC_CHECK_LIB([crypto],[EVP_DigestFinal_ex], [], [AC_MSG_ERROR([OpenSSL library required])])
